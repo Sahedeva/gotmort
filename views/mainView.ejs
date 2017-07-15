@@ -1,0 +1,33 @@
+<% include ./partials/header %>
+
+    <h1 class="center"><%= title %></h1>
+    <div class="row">
+      <div class="col-xs-6">
+          <h2 class="center">Users</h2><br>
+
+          <% for(var i=0;i<users.length;i++) { %>
+
+          <h3><%= users[i].name %></h3>
+          <% } %>
+      </div>
+      <div class="col-xs-6">
+        <h2>Characters</h2><br>
+        <% for(var j=0;j<characters.length;j++) { %>
+          <div class="row">
+            <div class="col-xs-6">
+              <h3><%= characters[j].name %></h3>
+            </div>
+            <div class="col-xs-6">
+              <% if (<%= characters[j].isAlive %>) { %>
+                <h3>Is Still Alive</h3>
+                <% } else { %>
+                  <h3>Is Dead</h3>
+                  <% } %>
+            </div>
+          </div>
+        <% } %>
+
+      </div>
+    </div>
+  </body>
+</html>

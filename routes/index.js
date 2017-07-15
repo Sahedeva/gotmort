@@ -5,7 +5,11 @@ var Character = require('../models/character');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Game of Thrones Mortality' });
+  User.find({}, function(err,users){
+    Character.find({},function(err,characters){
+      res.render('mainView', { title: 'Game of Thrones Mortality Picker', characters:characters, users:users });
+    });
+  });
 });
 
 router.get('/characterForm', function(req,res,next){
@@ -23,16 +27,19 @@ router.post('/characterForm', function(req,res,next){
 router.get('/userForm', function(req,res,next){
 
   Character.find({}, function(err, characters){
+    User.find({},function(err,users){
       console.log(characters);
+      console.log(users);
       var len = characters.length
-      res.render('userForm', {title: 'User Form', characters:characters, len:len});
+      res.render('userForm', {title: 'User Form', characters:characters, users:users, len:len});
     });
+  });
 
 });
 
   router.post('/submitUser', function(req,res,next){
     var name = req.body.name;
-    console.log(req.body);
+    console.log("POST route: /submitUser  req.body = ",req.body);
     var currentBet = []
     for (var i = 0;i<5;i++) {
       currentBet[i] = req.body['characterChoice'+(i+1)];
