@@ -6,7 +6,18 @@
     <form class="userform row" action="/submitUser" method="post">
       <br>
         <div class="col-xs-4">
-          <% for (var j = 1;j<6;j++) { %>
+            <div class="col">
+              <label for="Name"</label>
+
+              <select class="" name="name">
+                <% for(var x = 0;x<users.length;x++) { %>
+                  <option value="<%= users[x]['name'] %>"><%= users[x]['name'] %></option>
+                <% } %>
+              </select>
+            </div>
+        </div>
+        <div class="col-xs-4">
+           <% for (var j = 1;j<6;j++) { %>
             <div class="col">
               <label for="characterChoice<%= j %>">Character Slot <%= j %></label>
 
@@ -16,20 +27,7 @@
                 <% } %>
               </select>
             </div>
-          <% } %>
-        </div>
-        <div class="col-xs-4">
-          <% for (var j = 1;j<users.length;j++) { %>
-            <div class="col">
-              <label for="Name"</label>
-
-              <select class="" name="user<%= j %>">
-                <% for(var i = 0;i<users.length;i++) { %>
-                  <option value="<%= users[i]['name'] %>"><%= users[i]['name'] %></option>
-                <% } %>
-              </select>
-            </div>
-          <% } %>
+          <% } %> 
         </div>
       
       <br>
