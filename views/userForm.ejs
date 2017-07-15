@@ -3,21 +3,39 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
 
-    <form class="userform" action="/submitUser" method="post">
-      <label for="name">Name</label>
-      <input type="text" name="name" value="">
+    <form class="userform row" action="/submitUser" method="post">
       <br>
-      <% for (var j = 1;j<6;j++) { %>
-      <label for="characterChoice<%= j %>">Character Slot <%= j %></label>
+        <div class="col-xs-4">
+          <% for (var j = 1;j<6;j++) { %>
+            <div class="col">
+              <label for="characterChoice<%= j %>">Character Slot <%= j %></label>
 
-      <select class="" name="characterChoice<%= j %>">
-        <% for(var i = 0;i<len;i++) { %>
-          <option value="<%= characters[i]['name'] %>"><%= characters[i]['name'] %></option>
-        <% } %>
-      </select>
-      <% } %>
+              <select class="" name="characterChoice<%= j %>">
+                <% for(var i = 0;i<len;i++) { %>
+                  <option value="<%= characters[i]['name'] %>"><%= characters[i]['name'] %></option>
+                <% } %>
+              </select>
+            </div>
+          <% } %>
+        </div>
+        <div class="col-xs-4">
+          <% for (var j = 1;j<users.length;j++) { %>
+            <div class="col">
+              <label for="Name"</label>
+
+              <select class="" name="user<%= j %>">
+                <% for(var i = 0;i<users.length;i++) { %>
+                  <option value="<%= users[i]['name'] %>"><%= users[i]['name'] %></option>
+                <% } %>
+              </select>
+            </div>
+          <% } %>
+        </div>
+      
       <br>
-      <input type="submit" name="submit" value="Submit">
+      <div class>
+        <input type="submit" name="submit" value="Submit">
+      </div>
     </form>
   </body>
 </html>
