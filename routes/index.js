@@ -12,15 +12,29 @@ router.get('/', function(req, res, next) {
   });
 });
 
+router.get('/stats', function(req,res,next){
+  User.find({},function(err,users){
+    res.render('stats', {title: 'Stats', users:users});
+  });
+});
+
 router.get('/characterForm', function(req,res,next){
   res.render('characterForm', {title: 'Character Form'});
 });
 
 router.post('/characterForm', function(req,res,next){
   var name = req.body.name;
+  console.log('character form req.body: ',req.body);
+  var isAlive = req.body.isAlive;
   var newCharacter = Character({
       name:name,
-      isAlive: true
+      isAlive: isAlive
+  });
+  // Save the character
+  newCharacter.save(function(err) {
+      if (err) console.log(err);
+
+      res.redirect('/characterForm');
   });
 });
 
