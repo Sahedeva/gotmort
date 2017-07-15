@@ -2,14 +2,22 @@
 
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
+
     <form class="userform" action="/submitUser" method="post">
       <label for="name">Name</label>
       <input type="text" name="name" value="">
       <br>
-      <label for="characterChoice1">First Character Slot</label>
-      <select class="" name="characterChoice1">
+      <% for (var j = 1;j<6;j++) { %>
+      <label for="characterChoice<%= j %>">Character Slot <%= j %></label>
 
+      <select class="" name="characterChoice<%= j %>">
+        <% for(var i = 0;i<len;i++) { %>
+          <option value="<%= characters[i]['name'] %>"><%= characters[i]['name'] %></option>
+        <% } %>
       </select>
+      <% } %>
+      <br>
+      <input type="submit" name="submit" value="Submit">
     </form>
   </body>
 </html>
