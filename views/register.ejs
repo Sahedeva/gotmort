@@ -1,35 +1,37 @@
 <% include ./partials/header %>
-
-       <br><br><br>
-       <div class="d-flex justify-content-center">
-           <h2>Register</h2>
-       </div>
-       <div class="d-flex justify-content-center">
-           <form class="register" action="registerUser" method="post">
-               <div class="input-group my-2 mr-sm-2">
-                   <div class="d-flex border-gray-round-all">
-                     <i class="pl-3 color-green material-icons align-self-center d-flex">person</i>
-                     <input class="my-2 p-3 no-bg-border" type="text" name="name" placeholder="Name" value=""><br>
-                   </div>
-               </div>
-               <div class="input-group my-2 mr-sm-2">
-                   <div class="d-flex border-gray-round-all">
-                     <i class="pl-3 color-green material-icons align-self-center d-flex">email</i>
-                     <input class="my-2 p-3 no-bg-border" type="email" name="email" placeholder="Email" value=""><br>
-                   </div>
-               </div>
-               <div class="input-group my-2 mr-sm-2">
-                   <div class="d-flex border-gray-round-all">
-                     <i class="pl-3 color-green material-icons align-self-center d-flex">vpn_key</i>
-                     <input class="my-2 p-3 no-bg-border" type="password" name="password" placeholder="Password" value=""><br>
-                   </div>
-               </div>
-               <div class="d-flex justify-content-center">
-                   <br>
-                   <input class="btn-success" type="submit" name="submit" value="Submit">
-               </div>
-           </form>
-       </div>
-
+    <div class="registerPage">
+      <div class="d-flex justify-content-center">
+          <h2>Register</h2>
+      </div>
+      <div class="d-flex justify-content-center">
+          <form class="register" action="registerUser" method="post">
+              <div class="input-group my-2 mr-sm-2">
+                  <div class="d-flex border-gray-round-all">
+                    <i class="pl-3 color-green material-icons align-self-center d-flex">person</i>
+                    <input class="my-2 p-3 no-bg-border" type="text" name="name" placeholder="Name" value=""><br>
+                  </div>
+              </div>
+              <!-- <div class="input-group my-2 mr-sm-2">
+                  <div class="d-flex border-gray-round-all">
+                    <i class="pl-3 color-green material-icons align-self-center d-flex">email</i>
+                    <input class="my-2 p-3 no-bg-border" type="email" name="email" placeholder="Email" value=""><br>
+                  </div>
+              </div> -->
+              <div class="input-group my-2 mr-sm-2">
+                  <div class="d-flex border-gray-round-all">
+                    <i class="pl-3 color-green material-icons align-self-center d-flex">vpn_key</i>
+                    <input class="my-2 p-3 no-bg-border" type="password" name="password" placeholder="Password" value=""><br>
+                  </div>
+              </div>
+              <div class="d-flex justify-content-center">
+                  <br>
+                  <input class="btn-success" type="submit" name="submit" value="Submit">
+              </div>
+          </form>
+      </div>
+    </div>
+    <audio autoplay loop>
+     <source src="/images/gotsoundSuper.mp3" type="audio/mp3">
+    </audio>
    </body>
 </html>
