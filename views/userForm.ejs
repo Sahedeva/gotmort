@@ -1,11 +1,12 @@
 <% include ./partials/header %>
 
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-
-    <form class="userform row" action="/submitUser" method="post">
+    <h1 class="center"><%= title %></h1>
+    <h2 class="center"><%= name %> put in your bet</h2>
+    <h3>Countdown: </h3>
+    <h4>Bets placed after countdown do not count!</h4>
+    <form class="userform row" action="/submitBet" method="post">
       <br>
-        <div class="col-xs-4">
+        <!-- <div class="col-xs-4">
             <div class="col">
               <label for="Name"</label>
 
@@ -15,11 +16,11 @@
                 <% } %>
               </select>
             </div>
-        </div>
-        <div class="col-xs-4">
+        </div> -->
+        <div class="col-md-6 col-md-offset-2">
            <% for (var j = 1;j<6;j++) { %>
             <div class="col">
-              <label for="characterChoice<%= j %>">Character Slot <%= j %></label>
+              <label for="characterChoice<%= j %>">Weighted Bet Slot #<%= j %></label>
 
               <select class="" name="characterChoice<%= j %>">
                 <% for(var i = 0;i<len;i++) { %>
@@ -27,13 +28,11 @@
                 <% } %>
               </select>
             </div>
-          <% } %> 
+          <% } %>
         </div>
-      
+
       <br>
-      <div class>
-        <input type="submit" name="submit" value="Submit">
-      </div>
+      <input type="submit" name="submit" value="Submit">
     </form>
   </body>
 </html>

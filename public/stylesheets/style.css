@@ -21,8 +21,16 @@ a {
   background-color: aliceblue;
 }
 
+.red {
+  color: red;
+}
+
 .characterDisplay {
   padding: 5px;
   border-bottom: 2px solid black;
   background-color: beige;
+}
+
+.navName {
+  padding-top: 7px;
 }
