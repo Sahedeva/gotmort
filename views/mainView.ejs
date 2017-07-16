@@ -1,44 +1,41 @@
 <% include ./partials/header %>
 
 
-    <div class="container">
-      <h1 class="center"><%= title %></h1>
-      <div class="row">
-        <div class="col-md-6">
-          <h2 class="center">Users</h2><br>
+    <div class="mainViewPage">
+      <div class="container">
+        <h1 style="position:fixed;margin-top:25px;margin-left:32%" class="center mainViewTitle"><%= title %></h1>
+        <div style="padding-top:90px;" class="row">
+          <div class="col-md-6 mainViewUsers">
+            <h2 class="center">Users</h2><br>
 
-          <% for(var i=0;i<users.length;i++) { %>
-            <div class="row userDisplay">
-              <div class="col-md-12">
-                <h3 class="center"><%= users[i].name %></h3>
+            <% for(var i=0;i<users.length;i++) { %>
+              <div class="row userDisplay">
+                <div class="col-md-12">
+                  <h3 class="center"><%= users[i].name %></h3>
+                </div>
               </div>
-            </div>
 
-          <% } %>
-        </div>
-        <div class="col-md-6">
-          <h2 class="center">Characters</h2><br>
-          <% for(var j=0;j<characters.length;j++) { %>
-          <div class="row characterDisplay">
-              <div class="col-md-6">
-                <h3><%= characters[j].name %></h3>
-              </div>
-              <div class="col-md-6">
-                <% if(characters[j].isAlive) { %>
-                  <h3><img class="logo" src="/images/ankh.png" alt="alive"></h3>
-                  <% } else { %>
-                    <h3><img class="logo leftpad" src="/images/deathSkull.png" alt="death"></h3>
-                    <% } %>
-              </div>
-              </div>
             <% } %>
-
-
-
-
+          </div>
+          <div class="col-md-6 mainViewChars">
+            <h2 class="center">Characters</h2><br>
+            <% for(var j=0;j<characters.length;j++) { %>
+            <div class="row characterDisplay">
+                <div class="col-md-6">
+                  <h3><%= characters[j].name %></h3>
+                </div>
+                <div class="col-md-6">
+                  <% if(characters[j].isAlive) { %>
+                    <h3><img class="logo" src="/images/ankh.png" alt="alive"></h3>
+                    <% } else { %>
+                      <h3><img class="logo leftpad" src="/images/deathSkull.png" alt="death"></h3>
+                      <% } %>
+                </div>
+                </div>
+              <% } %>
+          </div>
         </div>
       </div>
-
       </div>
       <audio id="reign" autoplay loop>
        <source src="/images/gotsoundReign.mp3" type="audio/mp3">
