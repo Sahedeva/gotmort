@@ -1,11 +1,13 @@
 <% include ./partials/header %>
     <div class="deathNotePage">
+      <br>
       <h1>Welcome Administrator <%= name %></h1>
       <h3>Countdown until end of episode: <span id="demo"></span></h3>
       <h4>Do not enter the death note until the episode is over!</h4>
+      <br>
       <form class="deathNoteForm" action="/submitDeath" method="post">
-        <div class="col-md-6 offset-md-4">
-              <label for="deathName">Who has shuffled off this mortal coil?</label>
+        <div class="col-md-6 offset-md-3">
+              <label class="charFormName" for="deathName"><b>Who has shuffled off this mortal coil?<b></label>
               <select class="" name="deathName">
                 <% for(var i = 0;i<charLen;i++) { %>
                   <% if (characters[i]['isAlive']) { %>

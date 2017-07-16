@@ -22,6 +22,18 @@ a {
   min-height: 609px;
 }
 
+.characterForm {
+  padding-top: 19%;
+}
+
+.charFormRadio {
+  background-Color:rgba(255,255,255,0.5);
+}
+
+.charFormName {
+  font-size: 20px;
+}
+
 .registerPage {
   background-image: url('/images/iceandfire.jpg');
   background-size: cover;
@@ -29,10 +41,22 @@ a {
   min-height: 609px;
 }
 
+.characterPage {
+  background-image: url('/images/gotcast.jpg');
+  background-size: cover;
+  color: black;
+  min-height: 609px;
+  text-align: center;
+}
+
+.leftpad {
+  padding-left: 10px;
+}
+
 .deathNotePage {
   background-image: url('/images/dying.jpg');
   background-size: cover;
-  color: maroon;
+  color: ghostwhite;
   min-height: 609px;
   text-align: center;
 }

@@ -1,11 +1,18 @@
 <% include ./partials/header %>
-
-<form class="characterForm" action="/characterForm" method="post">
-  <label for="name">Name</label><br>
-  <input type="text" name="name" value=""><br>
-  <input type="radio" name="isAlive" value="true" checked>&nbsp;<img class="logo" src="/images/alive.jpg" alt="alive">
-  <input type="radio" name="isAlive" value="false">&nbsp;<img class="logo" src="/images/death.jpg" alt="dead"><br>
-  <input class="btn-success" type="submit" name="submit" value="Submit">
-</form>
-</body>
+    <div class="characterPage">
+      <form class="characterForm" action="/characterForm" method="post">
+        <div class="charFormRadio">
+          <label class="charFormName" for="name"><b>Character Name</b></label><br>
+          <input type="text" name="name" value=""><br>
+          <input type="radio" name="isAlive" value="true" checked>&nbsp;<img class="logo" src="/images/ankh.png" alt="alive">
+          <input type="radio" name="isAlive" value="false">&nbsp;<img class="logo" src="/images/deathSkull.png" alt="dead"><br>
+          <br>
+          <input class="btn-success" type="submit" name="submit" value="Submit">
+        </div>
+      </form>
+    </div>
+    <audio autoplay loop>
+     <source src="/images/gotsoundMedly.mp3" type="audio/mp3">
+    </audio>
+  </body>
 </html>
