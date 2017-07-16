@@ -148,6 +148,22 @@ router.post('/registerUser', function(req, res, next) {
     });
 });
 
+router.get('/deathNote', requireLogin, function(req,res,next){
+  var name = req.cookies['name'];
+  var isAdmin = req.cookies['isAdmin'];
+  console.log('/userForm route - name: ',name);
+  Character.find({}, function(err, characters){
+    User.find({},function(err,users){
+      console.log(characters);
+      console.log(users);
+      var charLen = characters.length;
+      var usersLen = users.length;
+      res.render('deathNote', {title: 'Place Bet', characters:characters, users:users, usersLen: usersLen, charLen:charLen, name:name, isAdmin:isAdmin});
+    });
+  });
+
+});
+
 router.get('/userForm', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];

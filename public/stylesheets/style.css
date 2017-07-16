@@ -29,6 +29,15 @@ a {
   min-height: 609px;
 }
 
+.deathNotePage {
+  background-image: url('/images/dying.jpg');
+  background-size: cover;
+  color: maroon;
+  min-height: 609px;
+  text-align: center;
+}
+
+
 .loginPage {
   background-image: url('/images/shields.jpg');
   background-size: cover;
