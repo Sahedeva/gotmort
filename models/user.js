@@ -6,6 +6,7 @@ var userSchema = new mongoose.Schema({
   password: String,
   history: Array,
   currentBet: Array,
+  currentPoints: Number,
   isAdmin: Boolean,
   created_at: Date,
   updated_at: Date

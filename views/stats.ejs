@@ -1,6 +1,13 @@
 <% include ./partials/header %>
 
     <h1 class="center"><%= title %></h1>
+    <ol>
+      <% for(var i=0;i<len;i++) { %>
+      <li>
+        <%= users[i].name %> with <%= users[i].currentPoints %> points
+      </li>
 
+      <%}%>
+    </ol>
   </body>
 </html>

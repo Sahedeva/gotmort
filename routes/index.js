@@ -51,7 +51,8 @@ router.get('/stats', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
   User.find({},function(err,users){
-    res.render('stats', {title: 'Stats', users:users, name: name, isAdmin:isAdmin});
+    var len = users.length;
+    res.render('stats', {title: 'Stats', users:users, name: name, isAdmin:isAdmin, len:len});
   });
 });
 
@@ -152,9 +153,47 @@ router.post('/submitDeath',requireAdmin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
   var deathName = req.body.deathName;
+  var scoreArray = [10,8,6,4,2];
   User.find({},function(err,users){
     // check through submitted bets - tabulate points declare winner - clear submit bet and add to history
-  })
+    for (var i = 0, len = users.length;i<len;i++){
+      console.log('user: ');
+      console.log(users[i].name);
+      console.log(' currentBet: ');
+      console.log(users[i].currentBet);
+      var match = users[i].currentBet.indexOf(deathName);
+      console.log('Match: ',match);
+      if (match>-1){
+        var payOut = scoreArray[match];
+      } else {
+        var payOut = 0;
+      }
+      console.log('PayOut: ',payOut);
+      if (users[i].currentPoints){
+          var currentPoints = users[i].currentPoints+payOut;
+      } else {
+        var currentPoints = payOut;
+      }
+      console.log('history: ')
+      console.log(users[i].history);
+      var history = users[i].history;
+      var histObj = {"payOut":payOut,"weeklyBet":users[i].currentBet};
+      console.log('object: ');
+      console.log(histObj);
+      var newHistory = [];
+      newHistory = history;
+      console.log('newHistory: ');
+      console.log(newHistory);
+      newHistory.push(histObj);
+      console.log('newHistory: ');
+      console.log(newHistory);
+
+      User.findOneAndUpdate({'name': users[i].name}, {currentPoints:currentPoints, currentBet: [],history:newHistory}, {new: true}, function(err,user) {
+        console.log(user);
+      });
+    }
+    res.redirect('/stats');
+  });
 
 });
 
