@@ -1,21 +1,31 @@
 <% include ./partials/header %>
-
-       <br><br><br>
-       <div>
-           <h2 class="center">Login</h2>
-           <br>
-           <h4 class="center red"><%= message %></h4>
-       </div>
-       <div class="d-flex justify-content-center">
-           <form class="login" action="authenticate" method="post">
-             <input type="text" name="name" placeholder="Name" value="" class="border-gray-round-all my-2 p-3"><br>
-             <input type="password" name="password" placeholder="Password" value="" class="border-gray-round-all my-2 p-3"><br>
-             <input class="green-button" type="submit" name="submit" value="Sign In">
-           </form>
-       </div>
-       <div class="d-flex justify-content-center">
-           <h3>Need an account?</h3>
-           <a class="green-button align-self-center p-1 m\l-2 px-2" href="/registerForm">Sign Up</a>
-       </div>
+    <div class="loginPage">
+      <br><br><br>
+      <div>
+          <h2 class="center">Login</h2>
+          <h4 class="center red"><%= message %></h4>
+      </div>
+      <div class="d-flex justify-content-center">
+          <form class="login" action="authenticate" method="post">
+            <input type="text" name="name" placeholder="Name" value="" class="border-gray-round-all my-2 p-3"><br>
+            <input type="password" name="password" placeholder="Password" value="" class="border-gray-round-all my-2 p-3"><br>
+            <div class="d-flex justify-content-center">
+              <input class="btn-success" type="submit" name="submit" value="Sign In">
+            </div>
+          </form>
+      </div>
+      <br>
+      <div class="d-flex justify-content-center">
+          <h3>Register?</h3>
+      </div>
+      <div class="d-flex justify-content-center">
+          <button class="btn-primary" type="button" name="button">
+            <a style="color: white;" href="/registerForm">Sign Up</a>
+          </button>
+      </div>
+    </div>
+    <audio autoplay loop>
+      <source src="/images/gotsound80s.mp3" type="audio/mp3">
+    </audio>
    </body>
 </html>
