@@ -8,7 +8,7 @@ a {
 }
 
 .logo {
-  height: 75px;
+  height: 55px;
 }
 
 .center {
@@ -19,7 +19,7 @@ a {
   background-image: url('/images/got.jpg');
   background-size: cover;
   color: midnightBlue;
-  min-height: 567px;
+  min-height: 609px;
 }
 
 .userDisplay {
