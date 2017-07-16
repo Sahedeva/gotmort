@@ -144,8 +144,18 @@ router.post('/registerUser', function(req, res, next) {
         console.log('setting cookies');
         res.cookie('name', user.name);
         res.cookie('admin',user.isAdmin);
-        res.redirect('/mainView');
+        res.redirect('/deadPool');
     });
+});
+
+router.post('/submitDeath',requireAdmin, function(req,res,next){
+  var name = req.cookies['name'];
+  var isAdmin = req.cookies['isAdmin'];
+  var deathName = req.body.deathName;
+  User.find({},function(err,users){
+    // check through submitted bets - tabulate points declare winner - clear submit bet and add to history
+  })
+
 });
 
 router.get('/deathNote', requireLogin, function(req,res,next){
