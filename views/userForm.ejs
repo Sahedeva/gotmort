@@ -1,38 +1,77 @@
 <% include ./partials/header %>
-
-    <h1 class="center"><%= title %></h1>
-    <h2 class="center"><%= name %> put in your bet</h2>
-    <h3>Countdown: </h3>
-    <h4>Bets placed after countdown do not count!</h4>
-    <form class="userform row" action="/submitBet" method="post">
+    <div class="center">
+      <h3 class="center"><%= name %> place your bet!</h3>
+      <h4>Countdown: <span id="demo"></span></h4>
+      <h5>Bets placed after countdown do not count!</h5>
+    </div>
+    <form class="userform" action="/submitBet" method="post">
       <br>
         <!-- <div class="col-xs-4">
             <div class="col">
               <label for="Name"</label>
 
               <select class="" name="name">
-                <% for(var x = 0;x<users.length;x++) { %>
-                  <option value="<%= users[x]['name'] %>"><%= users[x]['name'] %></option>
+                <% for(var x = 0;x<user.length;x++) { %>
+                  <option value="<%= user[x]['name'] %>"><%= user[x]['name'] %></option>
                 <% } %>
               </select>
             </div>
         </div> -->
-        <div class="col-md-6 col-md-offset-2">
+        <div class="col-md-6 offset-md-4">
            <% for (var j = 1;j<6;j++) { %>
-            <div class="col">
+            <div>
               <label for="characterChoice<%= j %>">Weighted Bet Slot #<%= j %></label>
 
               <select class="" name="characterChoice<%= j %>">
                 <% for(var i = 0;i<len;i++) { %>
-                  <option value="<%= characters[i]['name'] %>"><%= characters[i]['name'] %></option>
+                  <% if (characters[i]['isAlive']) { %>
+                    <% if(user.currentBet[j-1]==characters[i]['name']) { %>
+                      <option selected value="<%= characters[i]['name'] %>"><%= characters[i]['name'] %></option>
+                    <% } else { %>
+                      <option value="<%= characters[i]['name'] %>"><%= characters[i]['name'] %></option>
+                    <% } %>
+                  <% } %>
                 <% } %>
               </select>
             </div>
           <% } %>
         </div>
-
       <br>
-      <input type="submit" name="submit" value="Submit">
+      <div class="center">
+        <input class="btn-success" type="submit" name="submit" value="Submit">
+      </div>
     </form>
+    <!-- Display the countdown timer in an element -->
+
+<script>
+// Set the date we're counting down to
+var countDownDate = new Date("July 16, 2017 20:00:00").getTime();
+
+// Update the count down every 1 second
+var x = setInterval(function() {
+
+  // Get todays date and time
+  var now = new Date().getTime();
+
+  // Find the distance between now an the count down date
+  var distance = countDownDate - now;
+
+  // Time calculations for days, hours, minutes and seconds
+  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+  // Display the result in the element with id="demo"
+  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
+  + minutes + "m " + seconds + "s ";
+
+  // If the count down is finished, write some text
+  if (distance < 0) {
+    clearInterval(x);
+    document.getElementById("demo").innerHTML = "EXPIRED";
+  }
+}, 1000);
+</script>
   </body>
 </html>

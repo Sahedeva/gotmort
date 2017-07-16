@@ -55,6 +55,14 @@ router.get('/stats', requireLogin, function(req,res,next){
   });
 });
 
+router.get('/currentBet', requireLogin, function(req,res,next){
+  var name = req.cookies['name'];
+  var isAdmin = req.cookies['isAdmin'];
+  User.findOne({'name':name},function(err,user){
+    res.render('currentBet', {title: 'Current Bet', user:user, name: name, isAdmin:isAdmin});
+  });
+});
+
 router.get('/characterForm', requireAdmin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
@@ -145,11 +153,11 @@ router.get('/userForm', requireLogin, function(req,res,next){
   var isAdmin = req.cookies['isAdmin'];
   console.log('/userForm route - name: ',name);
   Character.find({}, function(err, characters){
-    User.find({},function(err,users){
+    User.findOne({'name':name},function(err,user){
       console.log(characters);
-      console.log(users);
-      var len = characters.length
-      res.render('userForm', {title: 'User Form', characters:characters, users:users, len:len, name:name, isAdmin:isAdmin});
+      console.log(user);
+      var len = characters.length;
+      res.render('userForm', {title: 'Place Bet', characters:characters, user:user, len:len, name:name, isAdmin:isAdmin});
     });
   });
 
