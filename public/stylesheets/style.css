@@ -15,6 +15,13 @@ a {
   text-align: center;
 }
 
+.homePage {
+  background-image: url('/images/got.jpg');
+  background-size: cover;
+  color: midnightBlue;
+  min-height: 567px;
+}
+
 .userDisplay {
   padding: 5px;
   border-bottom: 2px solid black;
