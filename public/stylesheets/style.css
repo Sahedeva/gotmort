@@ -114,6 +114,13 @@ a {
   min-height: 609px;
 }
 
+.statsPage {
+  background-image: url('/images/stat.jpg');
+  background-size: cover;
+  color: rebeccapurple;
+  min-height: 609px;
+}
+
 .currentBetDisplay {
   background-Color: rgba(255,255,255,0.5);
 }

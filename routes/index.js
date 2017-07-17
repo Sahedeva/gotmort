@@ -30,6 +30,7 @@ router.get('/', function(req,res,next){
   res.render('bobTest', {title:'Home', name:name, isAdmin:isAdmin});
 });
 
+/* GET index page */
 router.get('/deadPool', requireLogin, function(req, res, next) {
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
@@ -40,6 +41,7 @@ router.get('/deadPool', requireLogin, function(req, res, next) {
   });
 });
 
+// Get Logout page
 router.get('/logout', function(req,res,next){
   console.log('deleting cookies');
   res.cookie('name', '');
@@ -50,7 +52,7 @@ router.get('/logout', function(req,res,next){
 router.get('/stats', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
-  User.find({},function(err,users){
+  User.find({},  null, {sort: {currentPoints: -1}}, function(err,users){
     var len = users.length;
     res.render('stats', {title: 'Stats', users:users, name: name, isAdmin:isAdmin, len:len});
   });
@@ -133,7 +135,8 @@ router.post('/registerUser', function(req, res, next) {
     var newUser = User({
         name: name,
         password: password,
-        isAdmin: false
+        isAdmin: false,
+        currentPoints: 0
     });
 
     console.log('newUser: ',newUser);
