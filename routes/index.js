@@ -98,7 +98,15 @@ router.get('/test', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
   res.render('test',{title:'Test',name:name, isAdmin:isAdmin});
-})
+});
+
+router.get('/graveyard', requireLogin, function(req,res,next){
+  var name = req.cookies['name'];
+  var isAdmin = req.cookies['isAdmin'];
+  var deathToll = [['Brienne of Tarth'],['Sandor Clegagne', 'Varys the Spider'],['none'],['Ned Stark',"Petyr Baelish 'Littlefinger'"]];
+  res.render('graveyard',{title:'Graveyard', name:name, isAdmin:isAdmin, deathToll:deathToll});
+});
+
 
 router.post('/authenticate', function(req, res) {
   var name = req.body.name;

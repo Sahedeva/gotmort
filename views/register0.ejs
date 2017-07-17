@@ -1,0 +1,45 @@
+<% include ./partials/headerfood %>
+
+       <br><br><br>
+       <div class="d-flex justify-content-center">
+           <h2>Register</h2>
+       </div>
+       <div class="d-flex justify-content-center">
+           <form class="register" action="register" method="post">
+               <div class="input-group my-2 mr-sm-2">
+                   <div class="d-flex border-gray-round-all">
+                     <i class="pl-3 color-green material-icons align-self-center d-flex">person</i>
+                     <input class="my-2 p-3 no-bg-border" type="text" name="firstname" placeholder="First Name" value=""><br>
+                   </div>
+               </div>
+               <div class="input-group my-2 mr-sm-2">
+                   <div class="d-flex border-gray-round-all">
+                     <i class="pl-3 color-green material-icons align-self-center d-flex">person</i>
+                     <input class="my-2 p-3 no-bg-border" type="text" name="lastname" placeholder="Last Name" value=""><br>
+                   </div>
+               </div>
+               <div class="input-group my-2 mr-sm-2">
+                   <div class="d-flex border-gray-round-all">
+                     <i class="pl-3 color-green material-icons align-self-center d-flex">email</i>
+                     <input class="my-2 p-3 no-bg-border" type="email" name="email" placeholder="Email" value=""><br>
+                   </div>
+               </div>
+               <div class="input-group my-2 mr-sm-2">
+                   <div class="d-flex border-gray-round-all">
+                     <i class="pl-3 color-green material-icons align-self-center d-flex">vpn_key</i>
+                     <input class="my-2 p-3 no-bg-border" type="password" name="password" placeholder="Password" value=""><br>
+                   </div>
+               </div>
+               <div class="input-group align-self-center">
+                   <div class="text-center px-2">
+                     <input type="checkbox" name="terms" value="terms" class="align-self-center" checked>&nbsp;&nbsp;I agree to the Terms<br>
+                   </div>
+               </div>
+           </form>
+       </div>
+       <div class="d-flex justify-content-center">
+           <br>
+           <a class="submit-gray align-self-center ml-2 px-3 py-2" href="/register">Join</a>
+       </div>
+   </body>
+</html>

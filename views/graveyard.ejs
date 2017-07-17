@@ -1,0 +1,29 @@
+<% include ./partials/header %>
+    <div class="graveyardPage">
+      <div class="container">
+        <div class="currentBetDiv">
+          <h2 style="position:fixed;margin-left:35%" ><span class="currentBetDisplay"><%= title %></span></h1>
+          <div style="padding-top:50px;">
+            <% for(var i=0;i<deathToll.length;i++) { %>
+              <h3><span class="currentBetDisplay">Week <%= i+1 %></span></h2>
+              <div class="row">
+                <% if(deathToll[i][0]=='none') { %>
+                  <div class="col-md-2 phoenix"></div>
+                <% } else { %>
+                  <% for(var j=0;j<deathToll[i].length;j++) { %>
+                  <div class="col-md-2 gravestone">
+                    <h4 class="grave"><%= deathToll[i][j] %></h4>
+                  </div>
+                  <% } %>
+                <% } %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <audio autoplay loop>
+     <source src="/images/gotsoundLadder.mp3" type="audio/mp3">
+    </audio>
+  </body>
+</html>

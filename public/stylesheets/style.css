@@ -111,14 +111,43 @@ a {
   background-image: url('/images/shields.jpg');
   background-size: cover;
   color: gold;
-  min-height: 609px;
+  min-height: 637px;
+}
+
+.graveyardPage {
+  background-image: url('/images/bastards.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  color: black;
+  min-height: 637px;
+}
+
+.gravestone {
+  background-image: url('/images/graveTest.png');
+  background-size: cover;
+  color: black;
+  height: 204px;
+}
+
+.phoenix {
+  background-image: url('/images/Phoenix.png');
+  background-size: cover;
+  height: 150px;
+}
+
+.grave {
+  padding-top: 163px;
+  font-size: 19px;
+  padding-left: 6px;
+  padding-right: 6px;
+  text-shadow: 1px 1px white;
 }
 
 .statsPage {
   background-image: url('/images/stat.jpg');
   background-size: cover;
   color: rebeccapurple;
-  min-height: 609px;
+  min-height: 637px;
 }
 
 .currentBetDisplay {

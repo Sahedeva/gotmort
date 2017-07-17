@@ -12,6 +12,11 @@
               <div class="row userDisplay">
                 <div class="col-md-12">
                   <h3 class="center"><%= users[i].name %></h3>
+                  <% for(var k=0;k<users[i]['history'].length;k++) { %>
+                    <h4>Week <%= k+1 %></h4>
+                    <p><%= users[i]['history'][k]['weeklyBet'] %></p>
+                    <p><%= users[i]['history'][k]['payOut'] %> points paid out</p>
+                  <% } %>
                 </div>
               </div>
 

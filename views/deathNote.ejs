@@ -9,6 +9,7 @@
           <div class="col-md-6 offset-md-3">
                 <label class="charFormName" for="deathName"><b>Who has shuffled off this mortal coil?<b></label>
                 <select class="" name="deathName">
+                  <option value="none">No One Died</option>
                   <% for(var i = 0;i<charLen;i++) { %>
                     <% if (characters[i]['isAlive']) { %>
                         <option value="<%= characters[i]['name'] %>"><%= characters[i]['name'] %></option>
@@ -21,7 +22,7 @@
             <input class="btn-warning" type="submit" name="submit" value="DIE!">
           </div>
         </form>
-      </div>  
+      </div>
     </div>
     <audio autoplay loop>
      <source src="/images/gotsoundPiano.mp3" type="audio/mp3">
