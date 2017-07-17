@@ -27,11 +27,15 @@ a {
   background-image: url('/images/got.jpg');
   background-size: cover;
   color: midnightBlue;
-  min-height: 609px;
+  min-height: 637px;
 }
 
 .characterForm {
   padding-top: 19%;
+}
+
+.testSpan {
+  background-Color:rgba(255,255,255,0.5);
 }
 
 .charFormRadio {
@@ -46,14 +50,22 @@ a {
   background-image: url('/images/iceandfire.jpg');
   background-size: cover;
   color: red;
-  min-height: 609px;
+  min-height: 637px;
+}
+
+
+.betPage {
+  background-image: url('/images/gamble.jpg');
+  background-size: cover;
+  color: black;
+  min-height: 637px;
 }
 
 .characterPage {
   background-image: url('/images/gotcast.jpg');
   background-size: cover;
   color: black;
-  min-height: 609px;
+  min-height: 637px;
   text-align: center;
 }
 
@@ -71,7 +83,7 @@ a {
   background-attachment: fixed;
   background-position: 0px 78px;
   color: indigo;
-  min-height: 609px;
+  min-height: 637px;
   text-align: center;
 }
 
@@ -83,7 +95,7 @@ a {
   background-image: url('/images/dying.jpg');
   background-size: cover;
   color: ghostwhite;
-  min-height: 609px;
+  min-height: 637px;
   text-align: center;
 }
 
@@ -99,6 +111,10 @@ a {
   padding: 5px;
   border-bottom: 2px solid black;
   /*background-color: aliceblue;*/
+}
+
+.deathNoteDiv {
+  padding-top: 30px;
 }
 
 .red {
