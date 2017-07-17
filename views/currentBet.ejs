@@ -1,16 +1,21 @@
 <% include ./partials/header %>
-    <div class="betPage">
+    <div class="currentBetPage">
       <div class="container">
-        <h1 class="center"><%= title %></h1>
-        <h2 class="center">User: <%= user.name %></h2>
-        <% for(var i=0;i<user.currentBet.length;i++) { %>
-          <div class="row userDisplay">
-            <div class="col-md-12">
-              <h3>Weighted Bet #<%= i+1 %>: <%= user.currentBet[i] %></h3>
+        <div class="currentBetDiv">
+          <h2><span class="currentBetDisplay"><%= title %></span></h1>
+          <h3><span class="currentBetDisplay">User: <%= user.name %></span></h2>
+          <% for(var i=0;i<user.currentBet.length;i++) { %>
+            <div class="row">
+              <div class="col-md-6 offset-md-3 currentBetDisplay">
+                <h4>Weighted Bet #<%= i+1 %>: <%= user.currentBet[i] %></h3>
+              </div>
             </div>
-          </div>
-        <% } %>
+          <% } %>
+        </div>
       </div>
     </div>
+    <audio autoplay loop>
+     <source src="/images/gotsoundLadder.mp3" type="audio/mp3">
+    </audio>
   </body>
 </html>

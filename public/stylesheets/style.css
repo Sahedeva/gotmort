@@ -61,6 +61,13 @@ a {
   min-height: 637px;
 }
 
+.currentBetPage {
+  background-image: url('/images/gotbattlescenes.jpg');
+  background-size: cover;
+  color: black;
+  min-height: 637px;
+}
+
 .characterPage {
   background-image: url('/images/gotcast.jpg');
   background-size: cover;
@@ -105,6 +112,15 @@ a {
   background-size: cover;
   color: gold;
   min-height: 609px;
+}
+
+.currentBetDisplay {
+  background-Color: rgba(255,255,255,0.5);
+}
+
+.currentBetDiv {
+  padding-top: 30px;
+  text-align: center;
 }
 
 .userDisplay {
