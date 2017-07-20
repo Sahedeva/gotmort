@@ -103,7 +103,7 @@ router.get('/test', requireLogin, function(req,res,next){
 router.get('/graveyard', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
-  var deathToll = [['Brienne of Tarth'],['Sandor Clegagne', 'Varys the Spider'],['none'],['Ned Stark',"Petyr Baelish 'Littlefinger'"]];
+  var deathToll = [['none']];
   res.render('graveyard',{title:'Graveyard', name:name, isAdmin:isAdmin, deathToll:deathToll});
 });
 
