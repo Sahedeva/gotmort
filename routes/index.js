@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var Character = require('../models/character');
+var Graveyard = require('../models/graveyard');
 var bcrypt = require('bcrypt');
 
 function requireLogin(req, res, next) {
@@ -103,8 +104,10 @@ router.get('/test', requireLogin, function(req,res,next){
 router.get('/graveyard', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
-  var deathToll = [['none']];
-  res.render('graveyard',{title:'Graveyard', name:name, isAdmin:isAdmin, deathToll:deathToll});
+  Graveyard.findOne({'name':'Graveyard'}, function(err,graveyard){
+    var deathToll = graveyard.deathToll;
+    res.render('graveyard',{title:'Graveyard', name:name, isAdmin:isAdmin, deathToll:deathToll});
+  });
 });
 
 
@@ -160,35 +163,89 @@ router.post('/registerUser', function(req, res, next) {
     });
 });
 
+router.get('/graveyardForm', requireAdmin, function(req,res,next){
+  // this route is not on the nav bar - it only needs to be done once
+  // navigate by typing the route in the url directly and click initiale button
+  var name = req.cookies['name'];
+  var isAdmin = req.cookies['isAdmin'];
+  res.render('graveyardForm',{title:'Graveyard Set Up', name:name, isAdmin:isAdmin});
+});
+
+router.post('/initializeGraveyard', requireAdmin, function(req,res,next){
+  var newGraveyard = Graveyard({
+      name:'Graveyard',
+      deathToll: []
+  });
+  newGraveyard.save(function(err) {
+      if (err) console.log(err);
+  });
+});
+
 router.post('/submitDeath',requireAdmin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
-  var deathName = req.body.deathName;
+  var numDeaths = req.body.numDeaths;
+  var deathNames = [];
+  // kill the characters
+  for (var l = 0;l<numDeaths;l++) {
+    deathNames[l] = req.body['deathName'+(l+1)];
+    Character.findOneAndUpdate({'name': deathNames[l]}, {'isAlive':false}, {new: true}, function(err,character) {
+          console.log(character);
+    });
+  }
+  console.log(deathNames);
+  // poplulate graveyard
+  Graveyard.findOne({'name':'Graveyard'}, function(err, graveyard) {
+    if (err)
+        console.log(err);
+    var deathToll = graveyard.deathToll;
+    deathToll.push(deathNames);
+    graveyard.deathToll = deathToll;
+    graveyard.save(function(err,graveyard) {
+      if (err)
+        console.log(err);
+      console.log(graveyard);
+    });
+  });
   var scoreArray = [10,8,6,4,2];
   User.find({},function(err,users){
-    // check through submitted bets - tabulate points declare winner - clear submit bet and add to history
-    for (var i = 0, len = users.length;i<len;i++){
-      console.log('user: ');
-      console.log(users[i].name);
-      console.log(' currentBet: ');
-      console.log(users[i].currentBet);
-      var match = users[i].currentBet.indexOf(deathName);
-      console.log('Match: ',match);
-      if (match>-1){
-        var payOut = scoreArray[match];
-      } else {
-        var payOut = 0;
+    var len = users.length;
+    // payOut array for users
+    var payOut = new Array(users.length);
+    payOut.fill(0);
+    console.log(payOut);
+    for (var j = 0;j<numDeaths;j++){
+      for (var i = 0;i<len;i++){
+        console.log('user: ');
+        console.log(users[i].name);
+        console.log(' currentBet: ');
+        console.log(users[i].currentBet);
+        console.log('CurrentDeathName: ',deathNames[j]);
+        var match = users[i].currentBet.indexOf(deathNames[j]);
+        console.log('Match: ',match);
+        if (match>-1){
+          console.log('Match!');
+          payOut[i] += scoreArray[match];
+        } else {
+          console.log('no matches');
+        }
+        console.log('PayOut: ',payOut[i]);
       }
-      console.log('PayOut: ',payOut);
-      if (users[i].currentPoints){
-          var currentPoints = users[i].currentPoints+payOut;
+    }
+    // need to loop through users
+    for (var k = 0;k<len;k++){
+      console.log('Name: ',users[k].name);
+      console.log('Payout: ',payOut[k]);
+      if (users[k].currentPoints){
+          var currentPoints = users[k].currentPoints+payOut[k];
       } else {
-        var currentPoints = payOut;
+        var currentPoints = payOut[k];
       }
+      console.log('currentPoints: ',currentPoints);
       console.log('history: ')
-      console.log(users[i].history);
-      var history = users[i].history;
-      var histObj = {"payOut":payOut,"weeklyBet":users[i].currentBet};
+      console.log(users[k].history);
+      var history = users[k].history;
+      var histObj = {"payOut":payOut[k],"weeklyBet":users[k].currentBet};
       console.log('object: ');
       console.log(histObj);
       var newHistory = [];
@@ -198,27 +255,26 @@ router.post('/submitDeath',requireAdmin, function(req,res,next){
       newHistory.push(histObj);
       console.log('newHistory: ');
       console.log(newHistory);
-
-      User.findOneAndUpdate({'name': users[i].name}, {currentPoints:currentPoints, currentBet: [],history:newHistory}, {new: true}, function(err,user) {
-        console.log(user);
+      User.findOneAndUpdate({'name': users[k].name}, {currentPoints:currentPoints, currentBet: [], history:newHistory}, {new: true}, function(err,user) {
+            console.log(user);
       });
     }
     res.redirect('/stats');
   });
-
 });
 
 router.get('/deathNote', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
-  console.log('/userForm route - name: ',name);
+  var episodeEndTime = "July 23, 2017 21:00:00";
+  console.log('/deathNote route - name: ',name);
   Character.find({}, function(err, characters){
     User.find({},function(err,users){
       console.log(characters);
       console.log(users);
       var charLen = characters.length;
       var usersLen = users.length;
-      res.render('deathNote', {title: 'Place Bet', characters:characters, users:users, usersLen: usersLen, charLen:charLen, name:name, isAdmin:isAdmin});
+      res.render('deathNote', {title: 'Place Bet', characters:characters, users:users, usersLen: usersLen, charLen:charLen, episodeEndTime: episodeEndTime, name:name, isAdmin:isAdmin});
     });
   });
 
@@ -232,8 +288,9 @@ router.get('/userForm', requireLogin, function(req,res,next){
     User.findOne({'name':name},function(err,user){
       console.log(characters);
       console.log(user);
+      var episodeStartTime = "July 23, 2017 20:00:00";
       var len = characters.length;
-      res.render('userForm', {title: 'Place Bet', characters:characters, user:user, len:len, name:name, isAdmin:isAdmin});
+      res.render('userForm', {title: 'Place Bet', characters:characters, episodeStartTime:episodeStartTime, user:user, len:len, name:name, isAdmin:isAdmin});
     });
   });
 

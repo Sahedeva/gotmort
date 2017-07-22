@@ -106,6 +106,13 @@ a {
   text-align: center;
 }
 
+#endTime {
+  display: none;
+}
+
+#startTime {
+  display: none;
+}
 
 .loginPage {
   background-image: url('/images/shields.jpg');
@@ -126,7 +133,11 @@ a {
   background-image: url('/images/graveTest.png');
   background-size: cover;
   color: black;
-  height: 204px;
+  height: 166px;
+}
+
+#deathFormDiv {
+  display:none;
 }
 
 .phoenix {
@@ -136,8 +147,8 @@ a {
 }
 
 .grave {
-  padding-top: 163px;
-  font-size: 19px;
+  padding-top: 134px;
+  font-size: 14px;
   padding-left: 6px;
   padding-right: 6px;
   text-shadow: 1px 1px white;

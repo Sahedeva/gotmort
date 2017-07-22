@@ -1,11 +1,12 @@
 <% include ./partials/header %>
     <div class="betPage">
+      <span id="startTime"><%= episodeStartTime %></span>
       <div style="padding-top:90px;" class="center">
         <h3><span class="testSpan"><%= name %> place your bet!</span></h3>
         <h4><span class="testSpan">Countdown: <span id="demo"></span></span></h4>
-        <h5><span class="testSpan">Bets placed after countdown do not count!</span></h5>
+        <h5><span class="testSpan">No Bets can be placed after countdown expires!</span></h5>
       </div>
-      <form class="userform" action="/submitBet" method="post">
+      <form class="userform" id="betForm" action="/submitBet" method="post">
         <br>
           <div class="col-md-6 offset-md-4">
              <% for (var j = 1;j<6;j++) { %>
@@ -33,7 +34,7 @@
       </form>
     </div>
     <audio id="battle" autoplay loop>
-     <source src="/images/gotsoundBattle.mp3" type="audio/mp3">
+     <source src="/audio/gotsoundBattle.mp3" type="audio/mp3">
     </audio>
     <script type="text/javascript">
         var aud = document.getElementById("battle");
@@ -42,7 +43,9 @@
     <!-- Display the countdown timer in an element -->
     <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("July 23, 2017 20:00:00").getTime();
+    var epidsodeStart = document.getElementById('startTime').innerHTML;
+    console.log(epidsodeStart);
+    var countDownDate = new Date(epidsodeStart).getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
@@ -67,6 +70,7 @@
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";
+        document.getElementById("betForm").style.display = "none";
       }
     }, 1000);
     </script>

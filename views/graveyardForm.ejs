@@ -1,0 +1,16 @@
+<% include ./partials/header %>
+   <div class="graveyardPage">
+    <h1 class="center" style="padding-top:50px;color:red;"><%= title %></h1>
+      <div class="d-flex justify-content-center">
+          <form class="graveyard" action="/initializeGraveyard" method="post">
+            <div class="d-flex justify-content-center">
+              <input class="btn-success" type="submit" name="submit" value="Initialize Graveyard">
+            </div>
+          </form>
+      </div>
+    </div>
+    <audio autoplay loop>
+      <source src="/audio/gotsound80s.mp3" type="audio/mp3">
+    </audio>
+   </body>
+</html>

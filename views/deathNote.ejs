@@ -1,14 +1,19 @@
 <% include ./partials/header %>
     <div class="deathNotePage">
+      <span id="endTime"><%= episodeEndTime %></span>
       <div class="deathNoteDiv">
         <h1>Welcome Administrator <%= name %></h1>
         <h3>Countdown until end of episode: <span id="demo"></span></h3>
         <h4>Do not enter the death note until the episode is over!</h4>
         <br>
-        <form class="deathNoteForm" action="/submitDeath" method="post">
-          <div class="col-md-6 offset-md-3">
-                <label class="charFormName" for="deathName"><b>Who has shuffled off this mortal coil?<b></label>
-                <select class="" name="deathName">
+        <div id="deathFormDiv">
+          <h5>Who has shuffled off this mortal coil?</h5>
+          <form class="deathNoteForm" action="/submitDeath" method="post">
+            <div class="col-md-6 offset-md-3">
+              <button class="add_form_field btn-warning">Another one bites the dust &nbsp;<span class="glyphicon glyphicon-flash"></span></button><br><br>
+              <div class="container1">
+                <label style="margin-left:-39px;" class="charFormName" for="deathName1"><b>Death 1: </b></label>
+                <select name="deathName1">
                   <option value="none">No One Died</option>
                   <% for(var i = 0;i<charLen;i++) { %>
                     <% if (characters[i]['isAlive']) { %>
@@ -16,23 +21,28 @@
                     <% } %>
                   <% } %>
                 </select>
-          </div>
-          <br>
-          <div class="center">
-            <input class="btn-warning" type="submit" name="submit" value="DIE!">
-          </div>
-        </form>
+              </div>
+              <br>
+              <input id="deathNum" style="display: none;" type="number" name="numDeaths" value=1>
+              <div class="center">
+                <input class="btn-warning" type="submit" name="submit" value="DIE!">
+              </div>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
     <audio autoplay loop>
-     <source src="/images/gotsoundPiano.mp3" type="audio/mp3">
+     <source src="/audio/gotsoundPiano.mp3" type="audio/mp3">
     </audio>
 
     <!-- Display the countdown timer in an element -->
 
     <script>
     // Set the date we're counting down to
-    var countDownDate = new Date("July 23, 2017 21:00:00").getTime();
+    var epidsodeEnd = document.getElementById('endTime').innerHTML;
+    console.log(epidsodeEnd);
+    var countDownDate = new Date(epidsodeEnd).getTime();
 
     // Update the count down every 1 second
     var x = setInterval(function() {
@@ -53,12 +63,41 @@
       document.getElementById("demo").innerHTML = days + "d " + hours + "h "
       + minutes + "m " + seconds + "s ";
 
-      // If the count down is finished, write some text
+      // If the count down is finished, write some text and hide form
       if (distance < 0) {
         clearInterval(x);
         document.getElementById("demo").innerHTML = "EXPIRED";
+        document.getElementById("deathFormDiv").style.display = "inline";
       }
     }, 1000);
+
+    $(document).ready(function() {
+        var max_fields      = 20;
+        var wrapper         = $(".container1");
+        var add_button      = $(".add_form_field");
+
+        var x = 1;
+        $(add_button).click(function(e){
+            e.preventDefault();
+            if(x < max_fields){
+                x++;
+                console.log(x);
+                document.getElementById("deathNum").setAttribute('value',x);
+                $(wrapper).append('<div><label class="charFormName" for="deathName'+x+'"><b>Death '+x+':&nbsp;</b></label><select name="deathName'+x+'"><% for (var i=0;i<charLen;i++) { %><% if(characters[i].isAlive) { %><option value="<%= characters[i].name %>"><%= characters[i].name %></option><% } %><% } %></select><a href="#" class="delete">Delete</a><br></div>'); //add input box
+            }
+      else
+      {
+      alert('You Reached the limits')
+      }
+        });
+
+        $(wrapper).on("click",".delete", function(e){
+
+            e.preventDefault(); $(this).parent('div').remove();
+            x--;
+            document.getElementById("deathNum").setAttribute('value',x);
+        })
+    });
     </script>
   </body>
 </html>
