@@ -2,10 +2,10 @@
     <div class="graveyardPage">
       <div class="container">
         <div class="currentBetDiv">
-          <h2 style="position:fixed;margin-left:35%" ><span class="currentBetDisplay"><%= title %></span></h1>
-          <div style="padding-top:50px;">
+          <!-- <h2 style="position:fixed;margin-left:35%" ><span class="currentBetDisplay"><%= title %></span></h1> -->
+          <div style="padding-top:30px;">
             <% for(var i=0;i<deathToll.length;i++) { %>
-              <h3><span class="currentBetDisplay">Week <%= i+1 %></span></h2>
+              <h2><span style="color: yellow;" class="currentBetDisplay">Week <%= i+1 %></span></h2>
               <div class="row">
                 <% if(deathToll[i][0]=='none') { %>
                   <div class="col-md-2 phoenix"></div>

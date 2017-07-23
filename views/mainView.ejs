@@ -3,18 +3,28 @@
 
     <div class="mainViewPage">
       <div class="container">
-        <h1 style="position:fixed;margin-top:25px;margin-left:32%" class="center mainViewTitle"><%= title %></h1>
-        <div style="padding-top:90px;" class="row">
+        <!-- <h1 style="position:fixed;margin-top:25px;margin-left:32%" class="center mainViewTitle"><%= title %></h1> -->
+        <div style="padding-top:30px;" class="row">
           <div class="col-md-6 mainViewUsers">
             <h2 class="center">Users</h2><br>
 
             <% for(var i=0;i<users.length;i++) { %>
               <div class="row userDisplay">
                 <div class="col-md-12">
-                  <h3 class="center"><%= users[i].name %></h3>
+                  <h3 style="color: yellow;" class="center"><%= users[i].name %></h3>
                   <% for(var k=0;k<users[i]['history'].length;k++) { %>
                     <h4>Week <%= k+1 %></h4>
-                    <p><%= users[i]['history'][k]['weeklyBet'] %></p>
+                    <% if(users[i]['history'][k]['weeklyBet'].length>0) { %>
+                      <ol>
+                        <% for(var p=0;p<5;p++) { %>
+                          <li><%= users[i]['history'][k]['weeklyBet'][p] %></li>
+                        <% } %>
+                      </ol>
+                    <% } else { %>
+                      <p>No bet placed this week</p>
+                    <% }%>
+
+
                     <p><%= users[i]['history'][k]['payOut'] %> points paid out</p>
                   <% } %>
                 </div>

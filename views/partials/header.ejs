@@ -21,7 +21,7 @@
                   </span>
               </button>
               <div class="justify-content-center d-flex align-items-center">
-                  <a class="navbar-brand px-0 mx-0 color-green" href="/"><img class="logo" src="/images/House-Stark.jpg" alt="WinterIsComing"></a>
+                  <a class="navbar-brand px-0 mx-0 color-green <% if (title == 'Home') { %>homeSelect<% } %>" href="/"><img class="logo" src="/images/House-Stark.jpg" alt="WinterIsComing"></a>
               </div>
               <div class="justify-content-right align-items-center d-flex-column hidden-sm-up">
                   <a href="#">
@@ -38,36 +38,36 @@
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav">
               <% if(isAdmin=='true') { %>
-                <li class="nav-item active pl-3">
-                  <a class="nav-link color-green" href="/characterForm">Character Form</a>
+                <li class="nav-item pl-3 <% if (title == 'Character Form') { %>active<% } %>">
+                  <a class="nav-link color-green <% if (title == 'Character Form') { %>peach<% } %>" href="/characterForm">Character Form</a>
                 </li>
-                <li class="nav-item active pl-3">
-                  <a class="nav-link color-green" href="/deathNote">Death Note</a>
+                <li class="nav-item pl-3 <% if (title == 'Death Note') { %>active<% } %>">
+                  <a class="nav-link color-green <% if (title == 'Death Note') { %>peach<% } %>" href="/deathNote">Death Note</a>
                 </li>
               <% } %>
               <% if(name) { %>
-                <li class="nav-item pl-3">
-                  <a class="nav-link color-green" href="/deadPool">Dead Pool</a>
+                <li class="nav-item pl-3 <% if (title == 'Dead Pool') { %>active<% } %>">
+                  <a class="nav-link color-green <% if (title == 'Dead Pool') { %>peach<% } %>" href="/deadPool">Dead Pool</a>
                 </li>
-                <li class="nav-item pl-3">
-                  <a class="nav-link color-green" href="/userForm">Place Your Bets</a>
+                <li class="nav-item pl-3 <% if (title == 'Place Bet') { %>active<% } %>">
+                  <a class="nav-link color-green <% if (title == 'Place Bet') { %>peach<% } %>" href="/userForm">Place Your Bets</a>
                 </li>
-                <li class="nav-item pl-3">
-                  <a class="nav-link color-green" href="/currentBet">Current Bet</a>
+                <li class="nav-item pl-3 <% if (title == 'Current Bet') { %>active<% } %>">
+                  <a class="nav-link color-green <% if (title == 'Current Bet') { %>peach<% } %>" href="/currentBet">Current Bet</a>
                 </li>
-                <li class="nav-item pl-3">
-                  <a class="nav-link color-green" href="/stats">Stats</a>
+                <li class="nav-item pl-3 <% if (title == 'Stats') { %>active<% } %>">
+                  <a class="nav-link color-green <% if (title == 'Stats') { %>peach<% } %>" href="/stats">Leaderboard</a>
                 </li>
-                <li class="nav-item pl-3">
-                  <a class="nav-link color-green" href="/graveyard">Graveyard</a>
+                <li class="nav-item pl-3 <% if (title == 'Graveyard') { %>active<% } %>">
+                  <a class="nav-link color-green <% if (title == 'Graveyard') { %>peach<% } %>" href="/graveyard">Graveyard</a>
                 </li>
                 <li class="nav-item pl-3">
                   <a class="nav-link color-green" href="/logout">Logout</a>
                 </li>
                 <li class="navName pl-3">Welcome, <%= name %></li>
               <% } else { %>
-                <li class="nav-item pl-3">
-                  <a class="nav-link color-green" href="/login">Login</a>
+                <li class="nav-item pl-3 <% if (title == 'Login' || title =='Register') { %>active<% } %>">
+                  <a class="nav-link color-green <% if (title == 'Login' || title =='Register') { %>peach<% } %>" href="/login">Login</a>
                 </li>
                 <li class="nav-item pl-3">
                   <h1>Game of Throne's Mortality Picker</h1>
@@ -76,3 +76,11 @@
             </ul>
           </div>
         </nav>
+        <script type="text/javascript">
+        $(document).ready(function() {
+            $(".nav a").on("click", function(){
+                $(".nav").find(".active").removeClass("active");
+                $(this).parent().addClass("active");
+            });
+        });
+        </script>

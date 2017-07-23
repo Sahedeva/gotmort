@@ -308,7 +308,7 @@ router.get('/deathNote', requireLogin, function(req,res,next){
       console.log(users);
       var charLen = characters.length;
       var usersLen = users.length;
-      res.render('deathNote', {title: 'Place Bet', characters:characters, users:users, usersLen: usersLen, charLen:charLen, episodeEndTime: episodeEndTime, name:name, isAdmin:isAdmin});
+      res.render('deathNote', {title: 'Death Note', characters:characters, users:users, usersLen: usersLen, charLen:charLen, episodeEndTime: episodeEndTime, name:name, isAdmin:isAdmin});
     });
   });
 

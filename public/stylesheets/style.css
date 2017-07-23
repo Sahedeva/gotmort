@@ -19,6 +19,14 @@ a {
   height: 55px;
 }
 
+.homeSelect {
+  background-color: darkblue;
+}
+
+.peach {
+  background-color: peachpuff;
+}
+
 .center {
   text-align: center;
 }
@@ -68,6 +76,15 @@ a {
   min-height: 637px;
 }
 
+.currentBetDisplay {
+  background-Color: rgba(255,255,255,0.2);
+}
+
+.currentBetDiv {
+  padding-top: 30px;
+  text-align: center;
+}
+
 .characterPage {
   background-image: url('/images/gotcast.jpg');
   background-size: cover;
@@ -77,11 +94,23 @@ a {
 }
 
 .mainViewUsers {
-  background-Color: rgba(255,255,255,0.5);
+  background-Color: rgba(255,255,255,0.3);
+}
+
+.userDisplay {
+  padding: 5px;
+  /*border-bottom: 2px solid black;*/
+  /*background-color: aliceblue;*/
 }
 
 .mainViewChars {
-  background-Color: rgba(255,255,255,0.5);
+  background-Color: rgba(255,255,255,0.3);
+}
+
+.characterDisplay {
+  padding: 5px;
+  /*border-bottom: 2px solid black;*/
+  /*background-color: beige;*/
 }
 
 .mainViewPage {
@@ -161,33 +190,12 @@ a {
   min-height: 637px;
 }
 
-.currentBetDisplay {
-  background-Color: rgba(255,255,255,0.5);
-}
-
-.currentBetDiv {
-  padding-top: 30px;
-  text-align: center;
-}
-
-.userDisplay {
-  padding: 5px;
-  border-bottom: 2px solid black;
-  /*background-color: aliceblue;*/
-}
-
 .deathNoteDiv {
   padding-top: 30px;
 }
 
 .red {
   color: red;
-}
-
-.characterDisplay {
-  padding: 5px;
-  border-bottom: 2px solid black;
-  /*background-color: beige;*/
 }
 
 .navName {
