@@ -5,6 +5,24 @@ var Character = require('../models/character');
 var Graveyard = require('../models/graveyard');
 var bcrypt = require('bcrypt');
 
+var episodeEndTimes = [
+  'July 23, 2017 21:00:00',
+  'July 30, 2017 21:00:00',
+  'August 6, 2017 21:00:00',
+  'August 13, 2017 21:00:00',
+  'August 20, 2017 21:00:00',
+  'August 27, 2017 21:00:00'
+];
+
+var episodeStartTimes = [
+  'July 23, 2017 20:00:00',
+  'July 30, 2017 20:00:00',
+  'August 6, 2017 20:00:00',
+  'August 13, 2017 20:00:00',
+  'August 20, 2017 20:00:00',
+  'August 27, 2017 20:00:00'
+];
+
 function requireLogin(req, res, next) {
   if (req.cookies['name']) {
     next(); // allow the next route to run
@@ -199,6 +217,8 @@ router.post('/submitDeath',requireAdmin, function(req,res,next){
   var isAdmin = req.cookies['isAdmin'];
   var numDeaths = req.body.numDeaths;
   var deathNames = [];
+  episodeEndTimes.shift();
+  episodeStartTimes.shift();
   // kill the characters
   for (var l = 0;l<numDeaths;l++) {
     deathNames[l] = req.body['deathName'+(l+1)];
@@ -279,7 +299,8 @@ router.post('/submitDeath',requireAdmin, function(req,res,next){
 router.get('/deathNote', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
-  var episodeEndTime = "July 23, 2017 21:00:00";
+  var episodeEndTime = episodeEndTimes[0];
+  // "July 23, 2017 21:00:00"
   console.log('/deathNote route - name: ',name);
   Character.find({}, function(err, characters){
     User.find({},function(err,users){
@@ -301,7 +322,8 @@ router.get('/userForm', requireLogin, function(req,res,next){
     User.findOne({'name':name},function(err,user){
       console.log(characters);
       console.log(user);
-      var episodeStartTime = "July 23, 2017 20:00:00";
+      var episodeStartTime = episodeStartTimes[0];
+      // "July 23, 2017 20:00:00"
       var len = characters.length;
       res.render('userForm', {title: 'Place Bet', characters:characters, episodeStartTime:episodeStartTime, user:user, len:len, name:name, isAdmin:isAdmin});
     });
