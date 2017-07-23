@@ -29,7 +29,7 @@ router.get('/', function(req,res,next){
   var isAdmin = req.cookies['isAdmin'];
   console.log('/ route - name: ',name);
   console.log('/ route - isAdmin: ',isAdmin);
-  if(isAdmin===true){
+  if(isAdmin=='true'){
     console.log('You should only see this if you are admin');
   } else {
       console.log('You should only se this if you are not admin');
