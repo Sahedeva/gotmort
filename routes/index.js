@@ -28,6 +28,12 @@ router.get('/', function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
   console.log('/ route - name: ',name);
+  console.log('/ route - isAdmin: ',isAdmin);
+  if(isAdmin===true){
+    console.log('You should only see this if you are admin');
+  } else {
+      console.log('You should only se this if you are not admin');
+  }
   res.render('bobTest', {title:'Home', name:name, isAdmin:isAdmin});
 });
 
@@ -92,6 +98,13 @@ router.get('/login',function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
   console.log('/login route - name: ',name);
+  console.log('/login route - isAdmin: ',isAdmin);
+  if(isAdmin){
+    console.log('You should only see this if you are admin');
+  } else {
+      console.log('You should only se this if you are not admin');
+  }
+
   res.render('login',{title:'Login', message:'', name:name, isAdmin:isAdmin});
 });
 
