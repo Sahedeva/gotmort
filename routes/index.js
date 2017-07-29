@@ -217,8 +217,6 @@ router.post('/submitDeath',requireAdmin, function(req,res,next){
   var isAdmin = req.cookies['isAdmin'];
   var numDeaths = req.body.numDeaths;
   var deathNames = [];
-  episodeEndTimes.shift();
-  episodeStartTimes.shift();
   // kill the characters
   for (var l = 0;l<numDeaths;l++) {
     deathNames[l] = req.body['deathName'+(l+1)];
