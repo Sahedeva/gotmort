@@ -162,7 +162,7 @@ a {
   background-image: url('/images/graveTest.png');
   background-size: cover;
   color: black;
-  height: 166px;
+  height: 202px;
 }
 
 #deathFormDiv {
@@ -176,7 +176,7 @@ a {
 }
 
 .grave {
-  padding-top: 134px;
+  padding-top: 169px;
   font-size: 14px;
   padding-left: 6px;
   padding-right: 6px;
