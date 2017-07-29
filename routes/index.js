@@ -178,7 +178,18 @@ router.post('/registerUser', function(req, res, next) {
         name: name,
         password: password,
         isAdmin: false,
-        currentPoints: 0
+        currentPoints: 0,
+        currentBet: [],
+        history: [
+          {
+              "payOut": 0,
+              "weeklyBet": []
+          },
+          {
+              "weeklyBet": [],
+              "payOut": 0
+          }
+        ]
     });
 
     console.log('newUser: ',newUser);
