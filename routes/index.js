@@ -312,7 +312,7 @@ router.post('/submitDeath',requireAdmin, function(req,res,next){
 router.get('/deathNote', requireLogin, function(req,res,next){
   var name = req.cookies['name'];
   var isAdmin = req.cookies['isAdmin'];
-  var episodeEndTime = episodeEndTimes[2];
+  var episodeEndTime = episodeEndTimes[3];
   // "July 23, 2017 21:00:00"
   console.log('/deathNote route - name: ',name);
   Character.find({}, function(err, characters){
@@ -335,7 +335,7 @@ router.get('/userForm', requireLogin, function(req,res,next){
     User.findOne({'name':name},function(err,user){
       console.log(characters);
       console.log(user);
-      var episodeStartTime = episodeStartTimes[2];
+      var episodeStartTime = episodeStartTimes[3];
       // "July 23, 2017 20:00:00"
       var len = characters.length;
       res.render('userForm', {title: 'Place Bet', characters:characters, episodeStartTime:episodeStartTime, user:user, len:len, name:name, isAdmin:isAdmin});
